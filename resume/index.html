@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <link rel = 'stylesheet' href = '../style.css'>
+</head>
+<body>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects/index.html">Projects</a>
+        <a href="../contact/index.html">Contact</a>
+        <a href="./index.html">Resume</a>
+        <a href="https://github.com/KaiiB" target="_blank">GitHub</a>
+    </nav>
+    <h1>Resume</h1>
+
+    <section id="summary">
+        <h2>Professional Summary</h2>
+        <p>Aspiring data scientist and software engineer with an emphasis on leveraging machine learning and artificial cognition to process and analyze intricate data. Experience working
+            with professional data scientists as well as independently and cooperatively analyzing data through regression and classification projects.</p>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <article>
+            <header>
+                <h3>University of California, San Diego</h3>
+                <p>Bachelor of Science - <time datetime="2020-2024">2023-2027</time></p>
+            </header>
+            <ul>
+                <li>Major: Data Science</li>
+                <li>Minor: Mathematics</li>
+                <li>GPA: 3.90</li>
+            </ul>
+        </article>
+    </section>
+
+    <section id="experience">
+        <h2>Professional Experience</h2>
+        <article>
+            <header>
+                <h3>Talmo Lab - Salk Institute </h3>
+                <p>Computer Vision Research Intern - <time datetime="2025-02">Feb 2025</time> to Present</p>
+            </header>
+            <ul>
+                <li>Utilized PyTorch and time-series animal behavioral data to optimize 3D pose estimation + phenotyping conclusions with SLEAP,
+                    using Kalman filtering, 3D CNN-based triangulation, graph NNs, and part affinity fields (PAFs) for multi-animal segmentation</li>
+                <li>Containerized builds and tracked artifacts with Git/Actions, Docker and Kubernetes, using custom Marimo notebooks for GUI</li>
+            </ul>
+        </article>
+        <article>
+            <header>
+                <h3>Data Science Alliance & UCSD - Halicioglu Data Science Institute (HDSI)</h3>
+                <p>Machine Learning Researcher - <time datetime="2024-07">July 2024</time> to <time datetime="2025-03">March 2025</time></p>
+            </header>
+            <ul>
+                <li>Trained LSTM and Transformer models using PyTorch, Pandas, and AWS EC2, with experiments tracked via MLflow.</li>
+                <li>Built ETL pipelines on 100+ GB of data using PySpark and SQL, and sequenced features with Scikit-Learn, Matplotlib/Seaborn.</li>
+                <li>Developed continuous testing workflows and artifact versioning systems using Docker, Git/Actions and Jenkins, caching model and
+                    data iterations with 85+% accuracy using automated Statistical Process Control (SPC) techniques.</li>
+            </ul>
+        </article>
+        <article>
+            <header>
+                <h3>CarPro-S</h3>
+                <p>Founding Engineer - <time datetime="2024-03">March 2024</time> to <time datetime="2024-06">June 2024</time></p>
+            </header>
+            <ul>
+                <li>Built an AI-powered driving kit with an RPI, camera, pressure sensors and backend live-time CV model, to detect unsafe driving.</li>
+                <li>Optimized facial landmark detection using TensorFlow, CV2, and SVMs, improving gaze tracking with hyperparameter tuning.</li>
+                <li>Designed notification system with Twilio's SMS API in Flask to alert authorities/trigger warnings, reliability tested with Pytest.</li>
+            </ul>
+        </article>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul>
+            <li>Languages
+                <ul>
+                    <li>Python, R, Java, JavaScript, TypeScript, C, C++, SQL (MySQL, PostgreSQL), HTML, CSS, Bash, GitLab CLI</li>
+                </ul>
+            </li>
+            <li>Tools/Platforms
+                <ul>
+                    <li>AWS (EC2, S3, SageMaker), Apache Spark + Hadoop, Express.js, Docker, Redis, Git/Lab, Kubernetes, Jenkins</li>
+                </ul>
+            </li>
+            <li>Libraries/Frameworks
+                <ul>
+                    <li>PyTorch, TensorFlow, Flask, Django, React, Node.js, OpenCV, Pandas, Scikit-learn, PySpark, Pytest</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <article>
+            <h3>Handwriting to LaTeX Conversion Program</h3>
+            <p>Developing a program to convert handwriting images into LaTeX documents, embedding positional differences for formatting. Assembled a Visual Transformer architecture with attention on structured handwriting data, dividing input images into chunks.</p>
+            <a href="https://colab.research.google.com/drive/1vx0sseC5awb239iwto07Wk0kGqc7Z3Vi?usp=sharing" target="_blank">View Project</a>
+        </article>
+        <article>
+            <h3>Multi-modal Audio Classification with Signal Processing</h3>
+            <p>Utilized Mel Spectrograms to convert time-series data to a logarithmic scale, sampling at 48kHz to avoid outliers. Built a music classification program with RNN-CNN joint architecture and double-layered LSTM, achieving 80% accuracy</p>
+            <a href="https://github.com/KaiiB/MusicGenreClassification/blob/main/Research%20Paper.pdf" target="_blank">View Project</a>
+        </article>
+        
+    </section>
+
+</body>
+</html>
