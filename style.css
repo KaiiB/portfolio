@@ -11,12 +11,13 @@ body {
   
 /* Root styles and variables */
 :root {
-  --color-accent: oklch(65% 50% 0);
+  /* One color scheme for now */
+  --accent: oklch(65% 50% 0);
 }
 
 html {
   font-family: system-ui;
-  accent-color: var(--color-accent);
+  accent-color: var(--accent);
 }
 
 /* Navigation styles */
@@ -40,9 +41,10 @@ nav a.current {
 }
 
 nav a:hover {
-  border-bottom: 0.4em solid var(--color-accent);
+  /* On hover action */
+  border-bottom: 0.4em solid var(--accent);
   padding-bottom: 0.1em;
-  background-color: oklch(from var(--color-accent) 95% 5% h);
+  background-color: oklch(from var(--accent) 95% 5% h);
 }
 
 /* Form styles */
@@ -85,7 +87,7 @@ button {
   margin: 0;
 }
 
-/* Typography */
+/* Text management */
 h1 {
   font-size: 400%;
 }
