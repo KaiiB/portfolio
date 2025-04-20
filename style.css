@@ -13,6 +13,7 @@ body {
 :root {
   /* One color scheme for now */
   --accent: oklch(65% 50% 0);
+  color-scheme: light dark;
 }
 
 html {
@@ -22,9 +23,10 @@ html {
 
 /* Navigation styles */
 nav {
+  --border-color: oklch(70% 10% 200 / 40%);
   display: flex;
   margin-bottom: 1em;
-  border-bottom: 1px solid oklch(80% 3% 200);
+  border-bottom: 1px solid var(--border-color); 
 }
 
 nav a {
@@ -36,7 +38,7 @@ nav a {
 }
 
 nav a.current {
-  border-bottom: 0.4em solid oklch(80% 3% 200);
+  border-bottom: 0.4em solid var(--border-color);
   padding-bottom: 0.1em;
 }
 
@@ -44,7 +46,7 @@ nav a:hover {
   /* On hover action */
   border-bottom: 0.4em solid var(--accent);
   padding-bottom: 0.1em;
-  background-color: oklch(from var(--accent) 95% 5% h);
+  background-color: color-mix(in oklch, var(--accent), canvas 85%);
 }
 
 /* Form styles */
@@ -95,4 +97,22 @@ h1 {
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
   text-wrap: balance;
+}
+
+/* Color scheme switcher */
+.color-scheme {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font: inherit;
+  font-size: 80%;
+}
+.color-scheme select {
+  font: inherit;
+  font-size: 80%;
+  padding: 0.1rem 0.1rem;
+  border-radius: 4px;
 }
