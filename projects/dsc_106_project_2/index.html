@@ -150,7 +150,7 @@
   <body>
     <header>
       <h1>
-        <small>Assignment 4</small>
+        <small>Data Visualization Project</small>
         Persuasive or Deceptive Visualization?
       </h1>
 
@@ -158,7 +158,7 @@
     </header>
 
     <main>
-      <h2>Proposition: China Has Become the World's Largest Net CO2 Exporter, Surpassing the United States Since 2005</h2>
+      <h2>Proposition: China is responsible for more CO2 emissions due to exports than the United States in the 21st century. </h2>
 
       <section>
         <h3>FOR the Proposition</h3>
@@ -169,14 +169,27 @@
         </figure>
 
         <p>Design Decisions and Rationale:</p>
-
         <ul>
-          <li>RATIONALE_1</li>
-          <li>RATIONALE_2</li>
-          <li>RATIONALE_3</li>
+          <li>Title and Framing: Used "China Has Become the World's Largest Net CO2 Exporter" with emphasis on "Surpassing".
+            Creates immediate negative framing while technically accurate.
+            Alternative considered: neutral title like "CO2 Export Trends: China and USA".
+            Chose dramatic framing to emphasize the crossover point, while also supporting the proposition.
+            Only displayed relation between China and USA export emissions, but China still has the highest emissions overall.
+            This could be misleading, as it implies that the USA is not a major contributor to CO2 emissions.
+           (Score: -0.5)</li>
+          <li>Color Scheme: Red for China, Blue for USA
+            While following cultural conventions, avoids aggressive color saturations
+            Could be seen as playing into stereotypes, but aids quick visual recognition.
+            (Score: 1.5)
+            </li>
+          <li>Annotation Placement: Strategic placement of "2001: China Surpasses USA" with arrow.
+            Provides clear context without overwhelming the visualization.
+            Considered multiple annotations but kept it minimal for clarity. (Score: -0.5)</li>
+            <li>Selection Bias: Purposely selected only China and USA to cross-visualize while 
+            ignoring the relative emissions to all other countries \(or global proportion\). 
+            Was done in order to support the primary proposition, but is still technically accurate (Score: -1)</li>
         </ul>
       </section>
-
       <section>
         <h3>AGAINST the Proposition</h3>
 
@@ -186,18 +199,45 @@
         </figure>
 
         <p>Design Decisions and Rationale:</p>
-
         <ul>
-          <li>RATIONALE_1</li>
-          <li>RATIONALE_2</li>
-          <li>RATIONALE_3</li>
+          <li>Derivative Deception: Purposely chose to plot the rate of change (discrete derivative AKA difference sequence). While
+            not fabricated, it does not show the absolute values of the emissions, which could be misleading (and are in this case). Was done 
+            in hopes of misguiding the reader to think that the emissions are relatively equal between the two countries, when in fact they are not. 
+            By plotting the rate of change, we can show that the two countries follow similiar annual paterns: this is something with many confounds, 
+            such as global events and natural occurences, so it doesn't actually disprove the proposition's argument among further analysis. (Score: -1.5)</li>
+          <li>Smoothing Transformations: Used 3-year rolling average alongside raw data. Transparent about showing both smoothed and raw values, which 
+            helps readers understand true trends while preserving data integrity. However, chose to bold the smoothed lines which could be misleading, but 
+            regardless, both set of lines were accurate. (Score: 1)</li>
+          <li>Title Framing: "Growth Rates Are Stabilizing" emphasizes recent convergence. Balances between highlighting positive development while 
+            ommitting raw emission values. Could be seen as cherry-picking the stabilization narrative, which it is doing in reality. (Score: -0.5)</li>
+            <li>Annotation Choice: "Near-Zero Growth Rate" annotation highlights convergence. Directs attention to key insight without distorting data.
+                Considered more dramatic annotations but chose measured approach; however, near-zero keyword suggests equality. In reality, only the 
+                growth rates approach convergence at zero, with China having their growth rates converge relatively faster (i.e. steeper gradients). (Score: 0.5)</li>
         </ul>
       </section>
 
       <section>
         <h2>Final Reflection</h2>
+        
 
-        <p>[WRITE FINAL REFLECTION PARAGRAPHS HERE.]</p>
+        <p>The process of creating persuasive yet ethical visualizations revealed constant tension between highlighting specific narratives and 
+            maintaining data integrity. The most challenging aspect was balancing propaganda-like elements without obvious red flags.
+            For example, the decision to show both raw and smoothed data in the growth rate visualization emerged from this struggle: wanting to show trends 
+            clearly while preserving transparency about the underlying data variation. 
+        </p>
+        <p>
+        One thing that caught me off guard at first was how difficult it was to actually create a viable counter-proposition. Most relations between
+        variables in the dataset were either too weak or too strong to be able to create a counter-proposition that was not misleading. If they were strong,
+        the proposition would be almost impossible to refute, and if they were weak, both would be misleading. I had to resort to using the derivative of 
+        the data in order to create a counter-proposition that was not misleading, but even then I had to examine correlations amongst countries in order 
+        to selectively choose the two countries that I could best represent the counter-proposition with.
+        </p>
+        <p>
+        What surprised me most was how subtle choices in framing, like title wording or annotation placement, can significantly impact perception without technically misrepresenting 
+        data. I would now define ethical analysis and visualization as something that prioritizes transparency whilst acknowledging that perfect objectivity is impossible. 
+        The key distinction between "acceptable" and "misleading" seems to lie in whether the choices made enhance understanding of true patterns in the data versus creating false 
+        impressions through selective emphasis or omission. However, this boundary remains fuzzy and subjective, requiring omnipotent knowledge of the data and its context.
+        </p>
       </section>
     </main>
   </body>
