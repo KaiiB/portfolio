@@ -6,6 +6,60 @@ function $$(selector, context = document) {
     return Array.from(context.querySelectorAll(selector));
 }
 
+export async function fetchJSON(url) {
+    try {
+      // Fetch the JSON file from the given URL
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch projects: ${response.statusText}`);
+      }
+      const data = await response.json();
+      return data;
+
+    } catch (error) {
+      console.error('Error fetching or parsing JSON data:', error);
+    }
+  }
+
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+    containerElement.innerHTML = ''; // Clear existing content
+
+    
+    for (const project of projects) {
+        const article = document.createElement('article');
+        
+        // Create and append heading
+        const heading = document.createElement(headingLevel);
+        heading.textContent = project.title;
+        article.appendChild(heading);
+        
+        // Create and append image with proper attributes
+        const img = document.createElement('img');
+        img.src = project.image;
+        img.alt = project.title;
+        article.appendChild(img);
+        
+        // Create and append description
+        const description = document.createElement('p');
+        description.textContent = project.description;
+        article.appendChild(description);
+
+        // Create and append link
+        const link = document.createElement('a');
+        link.href = project.url;
+        link.textContent = 'View Project';
+        link.target = '_blank'; // Open in new tab
+        link.rel = 'noopener noreferrer';
+        article.appendChild(link);
+        
+        containerElement.appendChild(article);
+    }
+}
+
+export async function fetchGithubData(username) {
+    return fetchJSON(`https://api.github.com/users/${username}`)
+}
+
 let pages = [
     {url: '', title: 'Home' },
     {url: 'projects/', title: 'Projects' },
