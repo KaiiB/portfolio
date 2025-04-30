@@ -2,44 +2,63 @@
 <html lang="en">
   <head>
     <title>Project 2 Report</title>
+    <script src="./local.js" type="module"></script>
     <style>
       :root {
-        --color-neutral-95: hsl(220 10% 95%);
-        --color-neutral-90: hsl(220 10% 90%);
-        --color-neutral-80: hsl(220 10% 80%);
-        --color-neutral-70: hsl(220 10% 70%);
-        --color-neutral-60: hsl(220 10% 60%);
-        --color-neutral-50: hsl(220 10% 50%);
-        --color-neutral-40: hsl(220 10% 40%);
-        --color-neutral-30: hsl(220 10% 30%);
-        --color-neutral-20: hsl(220 10% 20%);
-        --color-neutral-10: hsl(220 10% 10%);
+        /* Light theme colors (default) */
+        --bg-color: white;
+        --text-color: black;
+        --header-bg: white;
+        --neutral-bg: hsl(220 10% 95%);
+        --border-color: hsl(220 10% 80%);
+      }
+
+      [data-theme="dark"] {
+        --bg-color: hsl(220 10% 10%);
+        --text-color: hsl(220 10% 90%);
+        --header-bg: hsl(220 10% 15%);
+        --neutral-bg: hsl(220 10% 20%);
+        --border-color: hsl(220 10% 30%);
       }
 
       html {
         font: 100%/1.5 system-ui;
         counter-reset: figure;
-        background: var(--color-neutral-95);
+        background: var(--bg-color);
+        color: var(--text-color);
         max-width: min(75vw, 80em);
         margin: 0 auto;
       }
 
-      /* Headings */
+      .color-scheme {
+        position: fixed;
+        top: 1em;
+        right: 1em;
+        z-index: 1000;
+        background: var(--neutral-bg);
+        padding: 0.5em;
+        border-radius: 0.5rem;
+        color: var(--text-color);
+      }
 
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
+      .color-scheme select {
+        font: inherit;
+        background: var(--bg-color);
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+        border-radius: 0.25rem;
+        padding: 0.2em 0.5em;
+      }
+
+      /* Headings */
+      h1, h2, h3, h4, h5, h6 {
         line-height: 1.1;
         font-weight: 600;
         text-wrap: balance;
       }
 
-      h1,
-      h2 {
-        border-bottom: 1px solid var(--color-neutral-80);
+      h1, h2 {
+        border-bottom: 1px solid var(--border-color);
         padding-bottom: 0.2em;
       }
 
@@ -47,23 +66,23 @@
         margin-block: 1em 0.5rem;
         font-size: clamp(2.5em, 150% + 2vh + 2vw, 10vmin);
         font-weight: 800;
+      }
 
-        small {
-          display: block;
-          width: fit-content;
-          padding: 0.2em 0.5em;
-          margin-inline: auto;
-          color: white;
-          background: var(--color-neutral-40);
-          font-size: 40%;
-          text-transform: uppercase;
-          white-space: nowrap;
-        }
+      h1 small {
+        display: block;
+        width: fit-content;
+        padding: 0.2em 0.5em;
+        margin-inline: auto;
+        color: var(--text-color);
+        background: var(--neutral-bg);
+        font-size: 40%;
+        text-transform: uppercase;
+        white-space: nowrap;
       }
 
       h2 {
         font-size: 180%;
-        color: var(--color-neutral-30);
+        color: var(--text-color);
       }
 
       h3 {
@@ -71,32 +90,28 @@
       }
 
       /* Lists */
-
-      ul,
-      ol {
+      ul, ol {
         padding-inline-start: 2em;
       }
 
-      li {
-        &::marker {
-          color: var(--color-neutral-40);
-        }
+      li::marker {
+        color: var(--border-color);
+      }
 
-        + li {
-          margin-top: 0.2em;
-        }
+      li + li {
+        margin-top: 0.2em;
       }
 
       /* Sectioning elements */
-
       header {
         padding-block: 1em;
         text-align: center;
+        background: var(--header-bg);
       }
 
       main {
-        background: white;
-        color: var(--color-neutral-20);
+        background: var(--bg-color);
+        color: var(--text-color);
         border-radius: 1rem;
         padding: 0.1rem 2rem;
       }
@@ -106,43 +121,40 @@
         max-width: 100%;
         height: auto;
         border-radius: 0.5rem;
-        box-shadow: 0 0.1em 0.2em var(--color-neutral-95);
+        box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.2);
       }
 
       figure {
         margin: 1em 0;
         padding: 0.5rem;
         margin-inline: -0.5em;
-        border: 1px solid var(--color-neutral-80);
-        box-shadow: 0 0.1em 0.2em var(--color-neutral-95);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.1);
         text-align: center;
-        background: white;
+        background: var(--bg-color);
+      }
 
-        > figcaption {
-          font: 500 75% var(--font-sans);
-          background: var(--color-neutral-95);
-          padding: 0.5rem;
-          margin: -0.5rem;
-          margin-top: 0.5rem;
-          counter-increment: figure;
-          text-align: left;
+      figure > figcaption {
+        font: 500 75% var(--font-sans);
+        background: var(--neutral-bg);
+        padding: 0.5rem;
+        margin: -0.5rem;
+        margin-top: 0.5rem;
+        counter-increment: figure;
+        text-align: left;
+        color: var(--text-color);
+      }
 
-          &::before {
-            content: 'Figure ' counter(figure) ': ';
-            font-weight: bold;
-            color: var(--color-neutral-40);
-          }
+      figcaption::before {
+        content: 'Figure ' counter(figure) ': ';
+        font-weight: bold;
+        color: var(--border-color);
+      }
 
-          a:not(:hover, :focus, :active) {
-            color: inherit;
-            text-decoration: underline;
-            text-decoration-color: color-mix(
-              in lab,
-              currentColor,
-              transparent 70%
-            );
-          }
-        }
+      figcaption a:not(:hover, :focus, :active) {
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-color: color-mix(in lab, currentColor, transparent 70%);
       }
     </style>
   </head>
@@ -219,7 +231,6 @@
       <section>
         <h2>Final Reflection</h2>
         
-
         <p>The process of creating persuasive yet ethical visualizations revealed constant tension between highlighting specific narratives and 
             maintaining data integrity. The most challenging aspect was balancing propaganda-like elements without obvious red flags.
             For example, the decision to show both raw and smoothed data in the growth rate visualization emerged from this struggle: wanting to show trends 
