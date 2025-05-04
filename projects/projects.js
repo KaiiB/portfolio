@@ -5,7 +5,7 @@ const projects = await fetchJSON('../lib/projects.json');
 const projectsContainer = document.querySelector('.projects');
 renderProjects(projects, projectsContainer, 'h2');
 
-let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+let arcGenerator = d3.arc().innerRadius(30).outerRadius(50);
 
 function renderProjectChart(filtered) {
     let rolledData = d3.rollups(
@@ -30,6 +30,23 @@ function renderProjectChart(filtered) {
     // Clear existing SVG elements
     let svg = d3.select('svg');
     svg.selectAll('path').remove();
+    svg.selectAll('text').remove();
+
+    // Add centered text
+    svg.append('text')
+        .attr('class', 'title')
+        .attr('y', -7.5)
+        .text('Projects by Year');
+
+    svg.append('text')
+        .attr('class', 'subtitle')
+        .attr('y', 2.5)
+        .text(`${filtered.length} Total Projects`);
+
+    svg.append('text')
+        .attr('class', 'instruction')
+        .attr('y', 12.5)
+        .text('Click to Filter!');
 
     // Clear existing legend items
     let legend = d3.select('.legend');
