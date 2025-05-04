@@ -159,3 +159,40 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.9em;
   color: #666;
 }
+
+/* Projects chart */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 1em;
+  margin: 1em;
+  padding: 1em;
+  border: 2px outset;
+  border-color: lightgray;
+  flex: 1;
+
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+  font: inherit;
+}
+.legend-item em {
+  font-style: italic;
+  color: gray;
+}
+.swatch {
+  display: inline-flex;
+  background-color: var(--color);
+  width: 1em;
+  aspect-ratio: 1;
+  border-radius: 50%;
+
+}
+

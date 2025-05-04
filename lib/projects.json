@@ -3,36 +3,86 @@
         "title": "Handwriting to LaTeX Conversion Program",
         "image": "../images/handwriting_project.png",
         "description": "Developing a program to convert handwriting images into LaTeX documents, embedding positional differences for formatting. Assembled a Visual Transformer architecture with attention on structured handwriting data, dividing input images into chunks.",
-        "url" : "https://colab.research.google.com/drive/1vx0sseC5awb239iwto07Wk0kGqc7Z3Vi?usp=sharing"
+        "url" : "https://colab.research.google.com/drive/1vx0sseC5awb239iwto07Wk0kGqc7Z3Vi?usp=sharing",
+        "year": 2025
     },
     {
         "title": "Multi-modal Audio Classification with Signal Processing",
         "image": "../images/music_project.png",
         "description": "Utilized Mel Spectrograms to convert time-series data to a logarithmic scale, sampling at 48kHz to avoid outliers. Built a music classification program with RNN-CNN joint architecture and double-layered LSTM, achieving 80% accuracy",
-        "url": "https://github.com/KaiiB/MusicGenreClassification/blob/main/Research%20Paper.pdf"
+        "url": "https://github.com/KaiiB/MusicGenreClassification/blob/main/Research%20Paper.pdf",
+        "year": 2023
     },
     {
         "title": "Computer Vision Pose Estimation",
         "image": "../images/talmo_project.png",
         "description": "Utilized PyTorch and time-series animal behavioral data to optimize 3D pose estimation + phenotyping conclusions with SLEAP, using Kalman filtering, 3D CNN-based triangulation, graph NNs, and part affinity fields (PAFs) for multi-animal segmentation.",
-        "url": "https://github.com/KaiiB"
+        "url": "https://github.com/KaiiB",
+        "year": 2025
     },
     {
         "title": "Facial Recognition UI",
         "image": "../images/facial_project.png",
         "description": "Applied computer vision techniques such as facial landmarking and convolution to build a facial recognition classification pipeline. Built a demo UI hosted on Apache using Flask, imported the postprocessed model trained in an AWS SageMaker environment.",
-        "url": "https://github.com/KaiiB"
+        "url": "https://github.com/KaiiB",
+        "year": 2022
     },
     {
         "title": "CarPro-S",
         "image": "../images/car_project.webp",
         "description": "Built an AI-powered driving kit with an RPI, camera, pressure sensors and backend live-time CV model, to detect unsafe driving. Optimized facial landmark detection using TensorFlow, CV2, and SVMs, improving gaze tracking with hyperparameter tuning.",
-        "url": "https://github.com/KaiiB"
+        "url": "https://github.com/KaiiB",
+        "year": 2023
     },
     {
         "title": "DSC 106: Project 02",
         "image": "../images/data_vis_project.png",
         "description": "Project 2 for DSC 106, a data visualization course at UCSD. The project involved creating data visualizations for two opposing propositions, with the same dataset.",
-        "url": "../projects/dsc_106_project_2"
+        "url": "../projects/dsc_106_project_2",
+        "year": 2025
+    }, 
+    {
+        "title": "Lorem ipsum dolor sit.",
+        "image": "../images/handwriting_project.png",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit.",
+        "url" : "https://colab.research.google.com/drive/1vx0sseC5awb239iwto07Wk0kGqc7Z3Vi?usp=sharing",
+        "year": 2023
+    },
+    {
+        "title": "Lorem ipsum dolor sit.",
+        "image": "../images/handwriting_project.png",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit.",
+        "url" : "https://colab.research.google.com/drive/1vx0sseC5awb239iwto07Wk0kGqc7Z3Vi?usp=sharing",
+        "year": 2024
+    },
+    {
+        "title": "Lorem ipsum dolor sit.",
+        "image": "../images/handwriting_project.png",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit.",
+        "url" : "https://colab.research.google.com/drive/1vx0sseC5awb239iwto07Wk0kGqc7Z3Vi?usp=sharing",
+        "year": 2025
+    },
+    {
+        "title": "Lorem ipsum dolor sit.",
+        "image": "../images/handwriting_project.png",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit.",
+        "url" : "https://colab.research.google.com/drive/1vx0sseC5awb239iwto07Wk0kGqc7Z3Vi?usp=sharing",
+        "year": 2023
+    },
+    {
+        "title": "Lorem ipsum dolor sit.",
+        "image": "../images/handwriting_project.png",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit.",
+        "url" : "https://colab.research.google.com/drive/1vx0sseC5awb239iwto07Wk0kGqc7Z3Vi?usp=sharing",
+        "year": 2024
+    },
+    {
+        "title": "Lorem ipsum dolor sit.",
+        "image": "../images/handwriting_project.png",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit.",
+        "url" : "https://colab.research.google.com/drive/1vx0sseC5awb239iwto07Wk0kGqc7Z3Vi?usp=sharing",
+        "year": 2025
     }
+
+    
 ]

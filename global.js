@@ -44,13 +44,25 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
         description.textContent = project.description;
         article.appendChild(description);
 
-        // Create and append link
+        // Create and append link and year
+        const container = document.createElement('div');
+        container.style.display = 'flex'
+        container.style.justifyContent = 'space-between';
+        container.style.alignItems = 'center';
+
+
         const link = document.createElement('a');
         link.href = project.url;
         link.textContent = 'View Project';
         link.target = '_blank'; // Open in new tab
         link.rel = 'noopener noreferrer';
-        article.appendChild(link);
+        container.appendChild(link);
+
+        const year = document.createElement('span');
+        year.textContent = project.year;
+        year.style.fontStyle = 'italic';
+        container.appendChild(year);
+        article.appendChild(container);
         
         containerElement.appendChild(article);
     }
