@@ -1,4 +1,11 @@
- name: Checkout
+# Ensure that GITHUB_TOKEN has write permissions:
+
+- permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+- name: Checkout
   uses: actions/checkout@v4
   with:
     fetch-depth: '0'
