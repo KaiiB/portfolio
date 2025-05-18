@@ -6,10 +6,91 @@
     <title>Projects</title>
     <link rel = 'stylesheet' href = '../style.css'>
     <script src="../global.js" type="module"></script>
-    <script src="projects.js" type="module"></script>
+    <script src="./main.js" type="module"></script>
+    <style>
+        /* ...existing styles... */
+
+        circle {
+            transition: 200ms;
+            transform-origin: center;
+            transform-box: fill-box;
+            cursor: pointer;
+        }
+
+        circle:hover {
+            transform: scale(1.1);
+        }
+
+        .dots {
+            pointer-events: all;
+        }
+
+        .gridlines line {
+            stroke: #ddd;
+            stroke-opacity: 0.2;
+            shape-rendering: crispEdges;
+        }
+
+        .gridlines path {
+            stroke: none;
+        }
+
+        .x-axis path,
+        .y-axis path {
+            stroke: #999;
+            shape-rendering: crispEdges;
+        }
+
+        .x-axis text,
+        .y-axis text {
+            fill: var(--text-color);
+        }
+
+        dl.info {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.5em 1em;
+            margin: 0;
+            padding: 1em;
+            transition-duration: 500ms;
+            transition-property: opacity, visibility;
+        }
+
+        .tooltip {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        dl.info[hidden]:not(:hover, :focus-within) {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
 </head>
 <body>
     <h1>Meta</h1>
-    <p> Stats about the website. </p>
+    <h2> Stats about this portfolio. </h2>
+    <div id="stats"></div>
+    <h2>Commits by time of day.</h2>
+    <div id="chart"></div>
+
+    <dl id="commit-tooltip" class="info tooltip" hidden>
+        <dt>Commit</dt>
+        <dd>
+          <a href="" id="commit-link" target="_blank"></a>
+        </dd>
+      
+        <dt>Date</dt>
+        <dd id="commit-date"></dd>
+      
+        <!-- Add: Time, author, lines edited -->
+        <dt>Lines Changed</dt>
+        <dd id="commit-lines"></dd>
+      </dl>
 </body>
 </html>
