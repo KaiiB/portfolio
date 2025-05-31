@@ -13,7 +13,7 @@ let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
 // ====== Data Loading ======
 async function loadData() {
-  const data = await d3.csv('/portfolio/meta/loc.csv', (row) => ({
+  const data = await d3.csv('../meta/loc.csv', (row) => ({
     ...row,
     line: +row.line,
     depth: Number(row.depth),
