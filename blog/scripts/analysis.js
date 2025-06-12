@@ -332,9 +332,10 @@ export async function plotQDA3d(qda, X, y) {
     for (let i = 0; i < classes.length; i++) {
         for (let j = i + 1; j < classes.length; j++) {
             // First pass: compute  z values
+            const zRange = linspace(X[0].length >= 3 ? math.min(X.map((v) => v[2])) : -1, X[0].length >= 3 ? math.max(X.map((v) => v[2])) : 1, gridSize); 
             const zz= xx.map((row, r) => 
                 row.map((x, c) => {
-                    const zRange = linspace(X[0].length >= 3 ? math.min(X.map((v) => v[2])) : -1, X[0].length >= 3 ? math.max(X.map((v) => v[2])) : 1, gridSize); 
+                    
                     let minDiff = Infinity;
                     let bestZ = 0;
                   
@@ -353,7 +354,7 @@ export async function plotQDA3d(qda, X, y) {
                         }
                     });
                     
-                    return minDiff < 1 && (bestZ != 0 || bestZ != undefined) ? bestZ : NaN;
+                    return minDiff < 0.5 && (bestZ != 0 || bestZ != undefined) ? bestZ : NaN;
                 })
             );
             
