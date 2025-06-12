@@ -2,14 +2,6 @@
 import { generateData, LDA, QDA, plotLDA3d, plotQDA3d } from './scripts/analysis.js';
 
 // Add Plotly.js
-const script = document.createElement('script');
-script.src = 'https://cdn.plot.ly/plotly-2.24.1.min.js';
-
-script.onload = () => {
-  console.log('Plotly loaded');
-  // Optionally enable the form submit button here if you’d disabled it until Plotly is ready.
-};
-document.head.appendChild(script);
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('da-simulation');
