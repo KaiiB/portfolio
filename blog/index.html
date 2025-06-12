@@ -11,6 +11,7 @@
     <script src="main.js" type="module"></script>
     <script src="../global.js" type="module"></script>
 
+
 </head>
 <body>
     <h1>Blog</h1>
@@ -21,7 +22,36 @@
             <p>I was studying for my machine learning final and decided to create this cool tool to visualize 
                 disciminant analysis. Here, you can explore Linear and Quadratic Discriminant Analysis with 
                 interactive 3D visualizations. Generate your own dataset and see how the algorithms separate 
-                different classes in the feature space. </p>
+                different classes in the feature space. 
+            </p>
+            <p>
+                LDA and QDA both estimate the probability a data point belongs to a given class, and selects the 
+                class that generates the maximum probability (using log-likelihoods and Bayes' theorem). They both 
+                also assume that the data is generated from a multivariate normal distribution, with estimated mean and
+                covariance. The difference is that QDA assumes each class has a separate covariance matrix, whereas LDA 
+                assumes that each class uses the same covariance matrix. 
+            </p>
+            <p>
+                The discriminant function for a class gives the likelihood a point belongs to that class. For any given two classes,
+                if we set their discriminant functions equal, the set of all points that satisfy the equality form a boundary curve
+                between the two classes. The points on the boundary curve between the two classes mean that our algorithm predicts 
+                an equal probability of having either class assigned to any point on that curve. In other words, it effectively separates 
+                our two classes into a set of points that most likely belong to class A, and a set of points that most likely belong
+                to class B. 
+            </p>
+            <p>
+                There are (K choose 2) many combinations of boundary curves, since for each of K classes we can choose 2 to create a 
+                boundary on. When two discriminant functions are set equal, they can do different things based on LDA vs QDA. For LDA, 
+                the quadratic term ends up only producing linear combinations of X because their coefficients (produced from the covariance matrix)
+                are the same, and the distributed quadratic terms cancel out. For QDA, however, since the covariance is not the same, the quadratic 
+                terms have dissimiliar coefficients and thus produce quadratic feature interactions. 
+            </p>
+            <p>
+                Plotly.js only plots surfaces with estimated discrete data, so I created a grid of values to estimate the boundary curve at each point. 
+                Furthermore, if I'm only selecting discrete points I will almost never select the exact points where they are equal, especially since it 
+                is not a simple function and cannot be put in terms of (d - 1) features. As such I had to select points that were below a certain 
+                threshold instead. Obviously, this ended up creating annoying and ugly discontinuities, which is a fix-in-progress for when I have more time.
+            </p>
             
             <form class="simulation-form" id="da-simulation">
                 <div class="form-group">
