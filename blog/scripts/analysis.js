@@ -2,7 +2,7 @@
 import * as math from 'https://cdn.jsdelivr.net/npm/mathjs@11.8.0/+esm';
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 
-export function generateData(nSamples = 100, nFeatures = 3, randomState = null, nClasses = 2, variance = 1) {
+export async function generateData(nSamples = 100, nFeatures = 3, randomState = null, nClasses = 2, variance = 1) {
     // Set random seed if provided
     if (randomState !== null) {
         // e.g. using the random_state from user input:
@@ -13,7 +13,7 @@ export function generateData(nSamples = 100, nFeatures = 3, randomState = null, 
     // Generate centers for each class from unit cube edges
     const centers = [];
     for (let i = 0; i < nClasses; i++) {
-        const randomDim = math.randomInt(nClasses);
+        const randomDim = math.randomInt(nFeatures);
         let center = math.randomInt([nFeatures]);
         center[randomDim] = math.random();
         centers.push(center);
@@ -28,6 +28,8 @@ export function generateData(nSamples = 100, nFeatures = 3, randomState = null, 
         for (let j = 0; j < samplesPerClass; j++) {
             // Add random noise to center
             const noise = math.random([nFeatures], -math.random(), math.random());
+            console.log(noise);
+            console.log(centers[i])
             const sample = math.add(centers[i], noise);
             X.push(sample);
             y.push(i);
@@ -98,6 +100,7 @@ export class QDA {
         this.mus = null;
         this.pis = null;
         this.Ss = null;
+        this.mu = null;
     }
     
     fit(X, y) {
@@ -118,6 +121,7 @@ export class QDA {
             this.mus[i] = math.mean(classData, 0);
             // Class prior
             this.pis[i] = classIndices.length / nSamples;
+            this.mu = math.multiply(math.transpose(this.mus), this.pis);
             
             // Class covariance
             const centered = math.subtract(classData, this.mus[i]);
@@ -165,7 +169,7 @@ function linspace(start, stop, n) {
     return arr;
 }
 
-export function plotLDA3d(lda, X, y) {
+export async function plotLDA3d(lda, X, y) {
     // Create Plotly 3D scatter plot with decision boundaries
     const classes = [...new Set(y)];
     const traces = [];
@@ -279,7 +283,7 @@ export function plotLDA3d(lda, X, y) {
 }
 
 
-export function plotQDA3d(qda, X, y) {
+export async function plotQDA3d(qda, X, y) {
     // Similar to LDA plot but with quadratic decision boundaries
     const classes = [...new Set(y)];
     const traces = [];
@@ -310,7 +314,7 @@ export function plotQDA3d(qda, X, y) {
     subtraces.push(sub);
 
     // Prepare grid in feature1-feature2 plane
-    const gridSize = 100; // Increased grid density
+    const gridSize = 50; // Increased grid density
     const xMin = math.min(X.map(p => p[0]));
     const xMax = math.max(X.map(p => p[0]));
     const yMin = math.min(X.map(p => p[1]));
@@ -330,23 +334,26 @@ export function plotQDA3d(qda, X, y) {
             // First pass: compute  z values
             const zz= xx.map((row, r) => 
                 row.map((x, c) => {
-                    const zRange = linspace(-1, 1, 100); 
+                    const zRange = linspace(X[0].length >= 3 ? math.min(X.map((v) => v[2])) : -1, X[0].length >= 3 ? math.max(X.map((v) => v[2])) : 1, gridSize); 
                     let minDiff = Infinity;
                     let bestZ = 0;
-                    
+                  
                     zRange.forEach(z => {
-                        let p = [[x, yy[r][c], z]];
-                        p = X.shape > 3 ? p : p.concat(qda.mus.slice(4));
+                        let p = [x, yy[r][c], z];
+                       
+                        p = X[0].length > 3 ? p.concat(qda.mu.slice(3)) : p;
+                        p = [p]
+                
                         let discriminant = qda.discriminantFunction(p).flat();
                         const diff = math.abs(discriminant[i] - discriminant[j]);
                         
-                        if (diff < 1.0) {
+                        if (diff < minDiff) {
                             minDiff = diff;
                             bestZ = z;
                         }
                     });
                     
-                    return bestZ;
+                    return minDiff < 1 && (bestZ != 0 || bestZ != undefined) ? bestZ : NaN;
                 })
             );
             
@@ -379,9 +386,18 @@ export function plotQDA3d(qda, X, y) {
     const layout = {
         title: '3D QDA Decision Boundaries',
         scene: {
-            aspectmode: 'cube'
+            xaxis: {
+            range: [-1, 1],
+            },
+            yaxis: {
+            range: [-1, 1], 
+            },
+            zaxis: {
+            range: [-1, 1],
+            }
         },
-        margin: {l: 0, r: 0, b: 0, t: 30}
+        margin: {l:0,r:0,b:0,t:30}
+
     };
     
     return {traces, subtraces, layout};
