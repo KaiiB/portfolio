@@ -74,6 +74,7 @@ export async function fetchGithubData(username) {
 
 let pages = [
     {url: '', title: 'Home' },
+    {url: 'blog/', title: 'Blog'},
     {url: 'projects/', title: 'Projects' },
     {url: 'contact/', title: 'Contact' },
     {url: 'resume/', title: 'Resume' },
@@ -125,7 +126,7 @@ if (localStorage.colorScheme) {
     select.value = localStorage.colorScheme;
 }
 
-let form = document.querySelector('form');
+let form = document.getElementById('contact');
 form?.addEventListener('submit', (event) => {
     event.preventDefault();
     let data = new FormData(form);

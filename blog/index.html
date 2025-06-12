@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="../style.css">
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+    <script src="main.js" type="module"></script>
+    <script src="../global.js" type="module"></script>
+
+</head>
+<body>
+    <h1>Blog</h1>
+    
+    <div class="blog-cards">
+        <article class="blog-card">
+            <h3>Discriminant Analysis Simulation</h3>
+            <p>I was studying for my machine learning final and decided to create this cool tool to visualize 
+                disciminant analysis. Here, you can explore Linear and Quadratic Discriminant Analysis with 
+                interactive 3D visualizations. Generate your own dataset and see how the algorithms separate 
+                different classes in the feature space. </p>
+            
+            <form class="simulation-form" id="da-simulation">
+                <div class="form-group">
+                    <label for="n_features">Number of Features</label>
+                    <input type="number" id="n_features" name="n_features" min="2" max="10" value="3" required>
+                    <small class="help-text">Note: Only the first 3 features will be visualized</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="n_classes">Number of Classes</label>
+                    <input type="number" id="n_classes" name="n_classes" min="2" max="5" value="2" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="n_clusters">Clusters per Class</label>
+                    <input type="number" id="n_clusters" name="n_clusters" min="1" max="5" value="1" required>
+                    <small class="help-text">How many Gaussian clusters should represent each class?</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="n_redundant">Redundant Features</label>
+                    <input type="number" id="n_redundant" name="n_redundant" min="0" max="5" value="0" required>
+                    <small class="help-text">Features that are linear combinations of others</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="n_samples">Number of Samples</label>
+                    <input type="number" id="n_samples" name="n_samples" min="50" max="1000" value="100" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="random_state">Random Seed 🎲</label>
+                    <input type="number" id="random_state" name="random_state" min="0" value="42" required>
+                    <small class="help-text">For reproducible results</small>
+                </div>
+
+                <button type="submit">Generate Dataset & Visualize</button>
+            </form>
+            <div class="loading-container">
+                <div class="loading-bar" id="processing-progress"></div>
+            </div>
+            <div id="visualization-container"></div>
+
+        </article>
+    </div>
+
+
+</body>
+</html>
