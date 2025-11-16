@@ -441,8 +441,8 @@ dl.info[hidden]:not(:hover, :focus-within) {
 
 .blog-card p {
     line-height: 1.6;
-    margin: 1.5rem 0;
-    padding: 1.5rem;
+    margin: 1rem 0;
+    padding: 1rem;
     border-radius: 8px;
     background: var(--surface-2);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -451,7 +451,7 @@ dl.info[hidden]:not(:hover, :focus-within) {
 
 .blog-card p:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 8px var(--ac);
 }
 
 .blog-card h3 {

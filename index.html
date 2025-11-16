@@ -7,11 +7,36 @@
     <link rel = 'stylesheet' href = 'style.css'>
     <script src="global.js" type="module"></script>
     <script src="index.js" type="module" defer></script>
+    <style>
+        img[alt="selfie"] {
+            border-radius: 16px;
+            border: 3px solid var(--accent);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: block;
+            margin: 2rem auto;
+        }
+
+        img[alt="selfie"]:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            img[alt="selfie"] {
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            }
+
+            img[alt="selfie"]:hover {
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>Kaii Bijlani</h1>
     <p>My name is Kaii Bijlani, and I am a current data science major at UC San Diego. I've focused on building real-world AI systems, from edge computing and telemetry analysis to scalable pipelines and model deployment.</p>
-    <img src = 'images/selfie.jpeg' alt = 'selfie' width = '300' height = '400'>
+    <img src = 'images/kaii_selfie_2.png' alt = 'selfie' width = '450' height = '600'>
     
     <h2>Latest Projects</h2>
     <div class="projects">

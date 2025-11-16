@@ -9,7 +9,7 @@ export async function generateData(nSamples = 100, nFeatures = 3, randomState = 
         Math.seedrandom(randomState);
 
     }
-    
+
     // Generate centers for each class from unit cube edges
     const centers = [];
     for (let i = 0; i < nClasses; i++) {
@@ -18,12 +18,12 @@ export async function generateData(nSamples = 100, nFeatures = 3, randomState = 
         center[randomDim] = math.random();
         centers.push(center);
     }
-    
+
     // Generate samples around centers
     const X = [];
     const y = [];
     const samplesPerClass = Math.floor(nSamples / nClasses);
-    
+
     for (let i = 0; i < nClasses; i++) {
         for (let j = 0; j < samplesPerClass; j++) {
             // Add random noise to center
@@ -35,7 +35,7 @@ export async function generateData(nSamples = 100, nFeatures = 3, randomState = 
             y.push(i);
         }
     }
-    
+
     return [X, y];
 }
 
@@ -47,40 +47,40 @@ export class LDA {
         this.S = null;
         this.mu = null;
     }
-    
+
     fit(X, y) {
         const nSamples = X.length;
         const nFeatures = X[0].length;
         this.classes = [...new Set(y)];
         this.mus = Array(this.classes.length).fill().map(() => Array(nFeatures).fill(0));
         this.pis = Array(this.classes.length).fill(0);
-        
+
         // Compute means and priors for each class
         for (let i = 0; i < this.classes.length; i++) {
             const classIndices = y.map((val, idx) => val === this.classes[i] ? idx : -1).filter(idx => idx !== -1);
             const classData = classIndices.map(idx => X[idx]);
-            
+
             // Class mean
             this.mus[i] = math.mean(classData, 0);
             // Class prior
             this.pis[i] = classIndices.length / nSamples;
         }
-        
+
         // Overall mean
         this.mu = math.multiply(math.transpose(this.mus), this.pis);
-        
+
         // Compute covariance matrix
         const centered = math.subtract(X, this.mu);
         this.S = math.divide(math.multiply(math.transpose(centered), centered), nSamples);
-        
+
         return this;
     }
-    
+
     predict(X) {
         const scores = this.decisionFunction(X);
         return scores.map(row => math.indexOf(row, math.max(row)));
     }
-    
+
     decisionFunction(X) {
         const invS = math.inv(this.S);
         return X.map(x => {
@@ -102,35 +102,35 @@ export class QDA {
         this.Ss = null;
         this.mu = null;
     }
-    
+
     fit(X, y) {
         const nSamples = X.length;
         const nFeatures = X[0].length;
         this.classes = [...new Set(y)];
         this.mus = Array(this.classes.length).fill().map(() => Array(nFeatures).fill(0));
         this.pis = Array(this.classes.length).fill(0);
-        this.Ss = Array(this.classes.length).fill().map(() => 
+        this.Ss = Array(this.classes.length).fill().map(() =>
             Array(nFeatures).fill().map(() => Array(nFeatures).fill(0))
         );
-        
+
         for (let i = 0; i < this.classes.length; i++) {
             const classIndices = y.map((val, idx) => val === this.classes[i] ? idx : -1).filter(idx => idx !== -1);
             const classData = classIndices.map(idx => X[idx]);
-            
+
             // Class mean
             this.mus[i] = math.mean(classData, 0);
             // Class prior
             this.pis[i] = classIndices.length / nSamples;
             this.mu = math.multiply(math.transpose(this.mus), this.pis);
-            
+
             // Class covariance
             const centered = math.subtract(classData, this.mus[i]);
             this.Ss[i] = math.divide(math.multiply(math.transpose(centered), centered), classIndices.length);
         }
-        
+
         return this;
     }
-    
+
     discriminantFunction(X) {
         return X.map(x => {
             return this.classes.map((_, i) => {
@@ -143,7 +143,7 @@ export class QDA {
             });
         });
     }
-    
+
     predict(X) {
         const scores = this.discriminantFunction(X);
         return scores.map(row => math.indexOf(row, math.max(row)));
@@ -197,16 +197,16 @@ export async function plotLDA3d(lda, X, y) {
     const xMax = math.max(X.map(p => p[0])) + 1;
     const yMin = math.min(X.map(p => p[1])) - 1;
     const yMax = math.max(X.map(p => p[1])) + 1;
-    
+
     const f1 = linspace(xMin, xMax, gridSize);
     const f2 = linspace(yMin, yMax, gridSize);
-    
+
     // Create meshgrid
     const [xx, yy] = meshgrid(f1, f2);
-    
+
     // Get the inverse of the covariance matrix
     const invS = math.inv(lda.S);
-    
+
     // For each pair of classes, compute w and b for the plane
     for (let i = 0; i < classes.length; i++) {
         for (let j = i + 1; j < classes.length; j++) {
@@ -214,26 +214,26 @@ export async function plotLDA3d(lda, X, y) {
             const mu_j = lda.mus[j];
             const pi_i = lda.pis[i];
             const pi_j = lda.pis[j];
-            
+
             // Calculate w_ij = invS @ (mu_i - mu_j)
             const diff_mu = math.subtract(mu_i, mu_j);
             const w_ij = math.multiply(invS, diff_mu);
-            
+
             // Compute quadratic terms mu^T invS mu
             const qi = math.multiply(math.multiply(mu_i, invS), math.transpose(mu_i));
             const qj = math.multiply(math.multiply(mu_j, invS), math.transpose(mu_j));
             const b_ij = -0.5 * (qi - qj) + math.log(pi_i / pi_j);
-            
+
             // Skip if the plane is nearly vertical in z
             if (Math.abs(w_ij[2]) < 1e-6) continue;
-            
+
             // Calculate z coordinates for the decision boundary surface
-            const zz = xx.map((row, r) => 
-                row.map((x, c) => 
+            const zz = xx.map((row, r) =>
+                row.map((x, c) =>
                     (-(w_ij[0] * x + w_ij[1] * yy[r][c] + b_ij) / w_ij[2])
                 )
             );
-            
+
             // Add surface trace
             traces.push({
                 type: 'surface',
@@ -245,10 +245,10 @@ export async function plotLDA3d(lda, X, y) {
                 colorscale: [[0, 'lightgray'], [1, 'lightgray']],
                 showscale: false,
                 hoverinfo: 'name',
-                customdata: [{classes: [i, j]}],
+                customdata: [{ classes: [i, j] }],
                 hoverlabel: {
                     bgcolor: 'white',
-                    font: {color: 'black'}
+                    font: { color: 'black' }
                 }
             });
         }
@@ -259,9 +259,9 @@ export async function plotLDA3d(lda, X, y) {
     let y_max = Math.max(...X.map((r) => r[1]));
     let z_min = Math.min(...X.map((r) => r[2]));
     let z_max = Math.max(...X.map((r) => r[2]));
-    
 
-    const span =  Math.max(x_max - x_min, y_max - y_min, z_max - z_min) / 2
+
+    const span = Math.max(x_max - x_min, y_max - y_min, z_max - z_min) / 2
 
     const x_mid = (x_max + x_min) / 2
     const y_mid = (y_max + y_min) / 2
@@ -270,16 +270,16 @@ export async function plotLDA3d(lda, X, y) {
     const layout = {
         title: '3D LDA Decision Boundaries',
         scene: {
-            xaxis: {title: classes[0], range: [x_mid - span, x_mid + span]},
-            yaxis: {title: classes[1], range: [y_mid - span, y_mid + span]},
-            zaxis: {title: classes[2], range: [z_mid - span, z_mid + span]},
+            xaxis: { title: classes[0], range: [x_mid - span, x_mid + span] },
+            yaxis: { title: classes[1], range: [y_mid - span, y_mid + span] },
+            zaxis: { title: classes[2], range: [z_mid - span, z_mid + span] },
             aspectmode: 'cube'
         },
-        margin: {l: 0, r: 0, b: 0, t: 30},
+        margin: { l: 0, r: 0, b: 0, t: 30 },
     };
-    
-    
-    return {traces, layout};
+
+
+    return { traces, layout };
 }
 
 
@@ -319,10 +319,10 @@ export async function plotQDA3d(qda, X, y) {
     const xMax = math.max(X.map(p => p[0]));
     const yMin = math.min(X.map(p => p[1]));
     const yMax = math.max(X.map(p => p[1]));
-    
+
     const f1 = linspace(xMin, xMax, gridSize);
     const f2 = linspace(yMin, yMax, gridSize);
-    
+
     // Create meshgrid
     const [xx, yy] = meshgrid(f1, f2);
 
@@ -332,33 +332,33 @@ export async function plotQDA3d(qda, X, y) {
     for (let i = 0; i < classes.length; i++) {
         for (let j = i + 1; j < classes.length; j++) {
             // First pass: compute  z values
-            const zRange = linspace(X[0].length >= 3 ? math.min(X.map((v) => v[2])) : -1, X[0].length >= 3 ? math.max(X.map((v) => v[2])) : 1, gridSize); 
-            const zz= xx.map((row, r) => 
+            const zRange = linspace(X[0].length >= 3 ? math.min(X.map((v) => v[2])) : -1, X[0].length >= 3 ? math.max(X.map((v) => v[2])) : 1, gridSize);
+            const zz = xx.map((row, r) =>
                 row.map((x, c) => {
-                    
+
                     let minDiff = Infinity;
                     let bestZ = 0;
-                  
+
                     zRange.forEach(z => {
                         let p = [x, yy[r][c], z];
-                       
+
                         p = X[0].length > 3 ? p.concat(qda.mu.slice(3)) : p;
                         p = [p]
-                
+
                         let discriminant = qda.discriminantFunction(p).flat();
                         const diff = math.abs(discriminant[i] - discriminant[j]);
-                        
+
                         if (diff < minDiff) {
                             minDiff = diff;
                             bestZ = z;
                         }
                     });
-                    
+
                     return minDiff < 0.5 && (bestZ != 0 || bestZ != undefined) ? bestZ : NaN;
                 })
             );
-            
-        
+
+
             // Add surface trace
             const surface = {
                 type: 'surface',
@@ -370,36 +370,42 @@ export async function plotQDA3d(qda, X, y) {
                 name: `Boundary ${classes[i]} vs ${classes[j]}`,
                 colorscale: [[0, color(i)], [1, color(j)]],
                 hoverinfo: 'name',
-                customdata: [{classes: [i, j]}],
+                customdata: [{ classes: [i, j] }],
                 hoverlabel: {
                     bgcolor: 'white',
-                    font: {color: 'black'}
+                    font: { color: 'black' }
                 }
             }
 
             traces.push(surface);
             subtraces.push(surface);
 
-            
+
         }
     }
-    
+
     const layout = {
         title: '3D QDA Decision Boundaries',
         scene: {
             xaxis: {
-            range: [-1, 1],
+                range: [-1, 1],
             },
             yaxis: {
-            range: [-1, 1], 
+                range: [-1, 1],
             },
             zaxis: {
-            range: [-1, 1],
+                range: [-1, 1],
             }
         },
-        margin: {l:0,r:0,b:0,t:30}
+        margin: { l: 0, r: 0, b: 0, t: 30 }
 
     };
-    
-    return {traces, subtraces, layout};
+
+    return { traces, subtraces, layout };
+}
+
+export async function generateGMMData(nSamples = 100, nClusters = 2, nFeatures = 3, random_state = 42) {
+    for (let k = 0; k < nSamples; i++) {
+        const selectedClass = math.randomInt(nClusters);
+    }
 }

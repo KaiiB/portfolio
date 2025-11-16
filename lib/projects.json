@@ -40,49 +40,5 @@
         "description": "Project 2 for DSC 106, a data visualization course at UCSD. The project involved creating data visualizations for two opposing propositions, with the same dataset.",
         "url": "../projects/dsc_106_project_2",
         "year": 2025
-    }, 
-    {
-        "title": "Lorem ipsum dolor sit.",
-        "image": "/portfolio/images/handwriting_project.png",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit.",
-        "url" : "https://colab.research.google.com/drive/1vx0sseC5awb239iwto07Wk0kGqc7Z3Vi?usp=sharing",
-        "year": 2023
-    },
-    {
-        "title": "Lorem ipsum dolor sit.",
-        "image": "/portfolio/images/handwriting_project.png",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit.",
-        "url" : "https://colab.research.google.com/drive/1vx0sseC5awb239iwto07Wk0kGqc7Z3Vi?usp=sharing",
-        "year": 2024
-    },
-    {
-        "title": "Lorem ipsum dolor sit.",
-        "image": "/portfolio/images/handwriting_project.png",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit.",
-        "url" : "https://colab.research.google.com/drive/1vx0sseC5awb239iwto07Wk0kGqc7Z3Vi?usp=sharing",
-        "year": 2025
-    },
-    {
-        "title": "Lorem ipsum dolor sit.",
-        "image": "/portfolio/images/handwriting_project.png",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit.",
-        "url" : "https://colab.research.google.com/drive/1vx0sseC5awb239iwto07Wk0kGqc7Z3Vi?usp=sharing",
-        "year": 2023
-    },
-    {
-        "title": "Lorem ipsum dolor sit.",
-        "image": "/portfolio/images/handwriting_project.png",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit.",
-        "url" : "https://colab.research.google.com/drive/1vx0sseC5awb239iwto07Wk0kGqc7Z3Vi?usp=sharing",
-        "year": 2024
-    },
-    {
-        "title": "Lorem ipsum dolor sit.",
-        "image": "/portfolio/images/handwriting_project.png",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit.",
-        "url" : "https://colab.research.google.com/drive/1vx0sseC5awb239iwto07Wk0kGqc7Z3Vi?usp=sharing",
-        "year": 2025
     }
-
-    
 ]
