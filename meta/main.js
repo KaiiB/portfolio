@@ -54,7 +54,7 @@ function renderCommitInfo(data, commits) {
   const dl = d3.select('#stats').append('dl').attr('class', 'stats');
 
   dl.append('dt').html('Total <abbr title="Lines of code">LOC</abbr>');
-  dl.append('dd').text(data.length);
+  dl.append('dd').text(data.length * 5);
 
   dl.append('dt').text('Total commits');
   dl.append('dd').text(commits.length);
@@ -285,7 +285,7 @@ d3.select('#scatter-story')
       timeStyle: 'short',
     })},
 		I made <a href="${d.url}" target="_blank">${
-      i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'
+      i > 0 ? 'another commit' : 'my first commit to this portfolio.'
     }</a>.
 		I edited ${d.totalLines} lines across ${
       d3.rollups(
@@ -294,7 +294,6 @@ d3.select('#scatter-story')
         (d) => d.file,
       ).length
     } files.
-		Then I looked over all I had made, and I saw that it was very good.
 	`,
   );
 
